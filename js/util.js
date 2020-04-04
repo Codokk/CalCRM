@@ -35,3 +35,6 @@ function objectNameComparison(a,b) {
 function sortByObjName(obj) {
     return obj.sort(objectNameComparison);
 }
+function zeroTime(iso) {
+    return iso.split("T")[0] + "T00:00:00.00Z";
+}

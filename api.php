@@ -21,7 +21,7 @@ if($_REQUEST['fn'])
             exit('1');
             break;
         case "getAppts":
-            $sql = "SELECT * FROM appointments WHERE `status` = 1 and `date` >= '".$DB->real_escape_string($_REQUEST['startdate'])."' ORDER BY `date` asc";
+            $sql = "SELECT * FROM appointments WHERE `status` = 1 and `date` >= '".$DB->real_escape_string($_REQUEST['startdate'])."' and `date` <= '".$DB->real_escape_string($_REQUEST['enddate'])."' ORDER BY `date` asc";
             $qry = $DB->query($sql);
             $res = [];
             while($result = $qry->fetch_assoc())
@@ -50,6 +50,19 @@ if($_REQUEST['fn'])
             }
             print(json_encode($res));
             break;
+        case "updateAppt":
+            $val_sql = "";
+            $key = explode(",",$_REQUEST['key']);
+            $val = explode(",",$_REQUEST['val']);
+            for($i=0; $i < count($key); $i++)
+            {
+                $val_sql .= "`".$DB->real_escape_string($key[$i])."` = '".$DB->real_escape_string($val[$i])."',";
+            }
+            $val_sql = substr($val_sql, 0, -1);
+            $sql = "UPDATE appointments SET ".$val_sql." WHERE `id` = '".$DB->real_escape_string($_REQUEST['appt_id'])."'";
+            $qry = $DB->query($sql) or die ($DB->error . "\n" . $sql);
+            exit('1');
+            break;
         case "login":
             $sql = "SELECT * FROM users WHERE `username` = '".$DB->real_escape_string($_REQUEST['username'])."' AND `password` = '".$DB->real_escape_string($_REQUEST['password'])."'";
             $qry = $DB->query($sql);
@@ -77,7 +90,6 @@ if($_REQUEST['fn'])
             break;
     }
 } else {
-    print_r($_REQUEST);
     exit();
 }
 ?>

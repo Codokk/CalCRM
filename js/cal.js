@@ -1,11 +1,11 @@
 //Custom Date Function For Better Syntax
 Date.prototype.addDays = function (days) {
-    var date = new Date(this.valueOf());
+    let date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
 }
 Date.prototype.subtractDays = function (days) {
-    var date = new Date(this.valueOf());
+    let date = new Date(this.valueOf());
     date.setDate(date.getDate() - days);
     return date;
 }
@@ -27,7 +27,7 @@ function dragDrop(ev) {
     let id = ev.dataTransfer.getData("Text");
     let confirmation = confirm("Move Appt to " + ev.target.getAttribute("data-time") + "?");
     if (confirmation) {
-        let d = new Date(ev.target.getAttribute("data-time")).toISOString();
+        let d = ev.target.getAttribute("data-timeiso");
         let data = {
             index: id.split("-")[1], 
             date: d,
@@ -184,7 +184,15 @@ function calendarRefresh() {
         let str_time = minToTime(active_time);
         head_html += "<div class='slot_header' data-time='" + str_time + "' style='pointer-events:auto' title='" + str_time + "'>" + str_time + "</div>";
         for (let i = 0; i < days_to_show; i++) {
-            let template = "<div class='slot' id='i" + i + "t" + active_time + "' data-time='" + new Date(start_date).addDays(i).toDateString() + "' data-rem='" + (slot_height * itteration) + "' title='" + str_time + "' onClick='slotselect(" + active_time + ", " + i + ")' ondragenter='return dragEnter(event)' ondrop='return dragDrop(event)' ondragover='return dragOver(event)'>&nbsp;</div>";
+                //Testing
+                //Get the date
+                let a = zeroTime(new Date(start_date).addDays(i).toISOString());
+                //add Hours, Mins, Secs
+                let hr = Math.floor(active_time / 60);
+                let mins = active_time - (60*hr);
+                let b = a.split("T")[0] + "T" + hr + ":" + mins + ":00.000Z";
+                //End Test
+            let template = "<div class='slot' id='i" + i + "t" + active_time + "' data-timeISO='"+b+"' data-time='" + new Date(start_date).addDays(i).toDateString() + "' data-rem='" + (slot_height * itteration) + "' title='" + str_time + "' onClick='slotselect(" + active_time + ", " + i + ")' ondragenter='return dragEnter(event)' ondrop='return dragDrop(event)' ondragover='return dragOver(event)'>&nbsp;</div>";
             day_html[i] == undefined ? day_html[i] = template : day_html[i] += template;
 
         }
@@ -214,7 +222,9 @@ function calendarRefresh() {
     }
     console.warn(appts);
     for (let i = 0; i < appts.length; i++) {
-        app = appts[i];
+        let app = appts[i];
+        console.log("ADDING APPT");
+        console.log(app);
         console.log(app);
         //let t = time of appt
         let d = app.date.split("T")[0];
