@@ -1,0 +1,447 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #eee;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background: #CCC;
+  margin: 0;
+  padding: 0 2rem;
+}
+
+h4 {
+  margin: .25rem;
+  border-bottom: 1px solid black;
+}
+
+.btn-round {
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin: .5rem;
+  background-color: #c9a200;
+  cursor: pointer;
+}
+
+.c {
+  text-align: center;
+}
+
+.lower-right {
+  position: fixed;
+  bottom: .5rem;
+  right: .5rem;
+}
+
+.weekly-calendar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.row {
+  background: #eee;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: 100%;
+  margin: 0 4px;
+  font-family: sans-serif;
+}
+
+.row div {
+  text-align: center;
+  font-weight: bold;
+}
+
+.row .employee-name {
+  background: #111;
+  color: #ddd;
+}
+
+.row .row-top {
+  height: 3.5rem;
+  border-bottom: 1px solid #111;
+  padding: .2rem 0rem;
+}
+
+.slot {
+  border-bottom: 1px dashed #413f4f;
+  height: 1.75rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.slot.active {
+  background-color: blue;
+  z-index: 3;
+}
+
+.slot.active:hover {
+  background-color: #0000e6;
+}
+
+.slot:hover {
+  background-color: #e1e1e1;
+}
+
+.slot_header {
+  height: 1.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.timeslots {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.appointment {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: Center;
+      -ms-flex-pack: Center;
+          justify-content: Center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: green;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(1, 1, 1, 0.65);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.overlay .overlay_container {
+  background-color: #eee;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.input-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  text-align: left;
+}
+
+.input-box div:nth-child(1) {
+  margin-bottom: .15rem;
+}
+
+.float-right {
+  margin-left: auto;
+  float: right;
+}
+
+.box_button {
+  margin: .15rem;
+  border: 1px solid black;
+  width: 4rem;
+  height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.box_button i {
+  font-size: 1.75rem;
+}
+
+.box-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.badge {
+  background-color: #3ad23a;
+  color: black;
+  font-family: sans-serif;
+  padding: 1rem;
+  margin: .5rem 0;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 3px 2px #00000057;
+          box-shadow: 2px 2px 3px 2px #00000057;
+  opacity: 0%;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.sm-input {
+  display: inline-block;
+  width: 3rem;
+  padding: 0;
+  margin: 0 auto;
+  border: none;
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.itemList {
+  border: 1px dashed #222;
+  padding: .25rem;
+  margin: .25rem;
+  font-family: sans-serif;
+}
+
+.item {
+  font-size: 1rem;
+  padding: .5rem;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.ticket {
+  min-width: 20rem;
+  background-color: white;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+}
+
+.ticket h1 {
+  font-family: "Old Standard TT", serif;
+  font-variant: small-caps;
+  text-align: center;
+  font-size: 3rem;
+  color: #413f4f;
+  margin: 10px 0 2px;
+  letter-spacing: -1px;
+}
+
+.ticket .meta {
+  margin: 0 16px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 2fr 1fr;
+      grid-template-columns: 2fr 2fr 1fr;
+}
+
+.ticket .meta-item {
+  border-top: 1px solid #413f4f;
+  border-left: 1px solid #413f4f;
+  border-bottom: 1px solid #413f4f;
+}
+
+.ticket .meta-item:nth-last-child(1) {
+  border-right: 1px solid #413f4f;
+}
+
+.ticket .meta-item input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.ticket .meta-item input:focus {
+  outline: 1px solid #413f4f;
+}
+
+.ticket .meta-item-label {
+  font-size: 1rem;
+  text-align: center;
+  font-family: arial;
+  color: #413f4f;
+  padding: 2px 0 18px;
+  margin: 0;
+}
+
+.ticket .ticket-id {
+  font-family: "share tech mono", menlo;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 2px;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.ticket .item-header {
+  font-family: arial;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin: 4px 0 -1px;
+}
+
+.ticket .order-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 5fr 2fr 3fr 2fr;
+      grid-template-columns: 2fr 5fr 2fr 3fr 2fr;
+  -ms-grid-rows: (23px)[18];
+      grid-template-rows: repeat(18, 23px);
+}
+
+.ticket .order-list div {
+  border-left: 1px solid black;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.ticket .order-list div:nth-child(5n+1) {
+  border-left: none;
+}
+
+.ticket .order-list-container {
+  background-color: #e3faf0;
+  position: relative;
+  padding: 4px 16px 2px 16px;
+}
+
+.addItem {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: gold;
+}
+
+.longBar {
+  position: fixed;
+  top: -8rem;
+  left: 0;
+  width: 100%;
+  height: 6rem;
+  background: white;
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-transition: all .6s ease;
+  transition: all .6s ease;
+  border-radius: 0px 0px 5px 5px;
+}
+
+#editor_customer_name {
+  cursor: pointer;
+}
+
+.tail-datetime-calendar {
+  z-index: 10;
+}
+
+.flex_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.flex_container div, .flex_container input {
+  width: 100%;
+}
+
+.nowrap {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+#hideLongBar {
+  width: 100%;
+  height: 1rem;
+  background: rgba(0, 0, 0, 0.34);
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/*# sourceMappingURL=cal.css.map */

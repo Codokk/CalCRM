@@ -1,0 +1,318 @@
+$slot_height: 1.75rem;
+$gray: #413f4f;
+$notwhite: #eee;
+$gold: #c9a200;
+* {
+  box-sizing: border-box;
+}
+body {
+  margin:0;
+  padding:0;
+  background: $notwhite;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: #CCC;
+  margin:0;
+  padding:0 2rem;
+}
+h4 {
+  margin: .25rem;
+  border-bottom: 1px solid black;
+}
+.btn-round {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin: .5rem;
+  background-color: $gold;
+  cursor: pointer;
+}
+.c {text-align: center}
+.lower-right {
+  position: fixed;
+  bottom: .5rem;
+  right: .5rem;
+}
+.weekly-calendar {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+}
+.row {
+  background: $notwhite;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: 100%;
+  margin: 0 4px;
+  font-family: sans-serif;
+  div {
+    text-align: center;
+    font-weight: bold;
+  }
+  .employee-name {
+    background: #111;
+    color: #ddd;
+  }
+  .row-top {
+    height: 3.5rem;
+    border-bottom: 1px solid #111;
+    padding: .2rem 0rem;;
+  }
+}
+.slot {
+  border-bottom: 1px dashed $gray;
+  height: $slot_height;
+  user-select: none;
+  &.active {
+    background-color: blue;
+    z-index: 3;
+    &:hover {
+      background-color: darken(blue, 5%);
+    }
+  }
+  &:hover {
+    background-color: darken($notwhite ,5%);
+  }
+}
+.slot_header {
+  height: $slot_height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timeslots {
+  position: relative;
+  height: 100%;
+  width:100%;
+  display: block;
+}
+.appointment {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content:Center;
+  align-items: center;
+  background-color: green;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(1,1,1,.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .overlay_container {
+        background-color: #eee;
+        padding: 2rem;
+        border-radius: 5px;
+    }
+}
+.hidden {
+    display: none !important;
+}
+.input-box {
+    display: flex;
+    flex-flow: column;
+    text-align: left;
+
+    div:nth-child(1) {
+        margin-bottom: .15rem;
+    }
+}
+.float-right {
+    margin-left: auto;
+    float: right;
+}
+.box_button {
+    margin: .15rem;
+    border: 1px solid black;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+        font-size: 1.75rem;
+    }
+}
+.box-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.badge {
+    background-color: #3ad23a;
+    color: black;
+    font-family: sans-serif;
+    padding: 1rem;
+    margin: .5rem 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px 2px #00000057;
+    opacity: 0%;
+    transition: all 1s ease;
+}
+.sm-input {
+    display: inline-block;
+    width: 3rem;
+    padding: 0;
+    margin: 0 auto;
+    border: none;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+.itemList {
+    border: 1px dashed #222;
+    padding: .25rem;
+    margin: .25rem;
+    font-family: sans-serif;
+}
+.item {
+    font-size: 1rem;
+    padding: .5rem;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.ticket {
+  min-width: 20rem;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+  h1 {
+    font-family: "Old Standard TT", serif;
+    font-variant: small-caps;
+    text-align: center;
+    font-size: 3rem;
+    color: $gray;
+    margin: 10px 0 2px;
+    letter-spacing: -1px;
+  }
+  .meta {
+    margin: 0 16px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+  }
+  .meta-item {
+    border-top: 1px solid $gray;
+    border-left: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+    &:nth-last-child(1) {
+      border-right: 1px solid $gray;
+    }
+    input {
+        border: none;
+        background-color: rgba(0,0,0,.06);
+        &:focus {
+            outline: 1px solid $gray;
+        }
+    }
+  }
+  .meta-item-label {
+    font-size: 1rem;
+    text-align: center;
+    font-family: arial;
+    color: $gray;
+    padding: 2px 0 18px;
+    margin: 0;
+  }
+  .ticket-id {
+    font-family: "share tech mono", menlo;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 2px;
+    opacity: 0.8;
+    margin: 0;
+  }
+  .item-header {
+    font-family: arial;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin: 4px 0 -1px;
+  }
+  .order-list {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr 3fr 2fr;
+    grid-template-rows: repeat(18, 23px);
+    div {
+      border-left:1px solid black;
+      text-align: center;
+      border-bottom: 1px solid black;
+    }
+    div:nth-child(5n+1) {
+      border-left: none;
+    }
+  }
+  
+  .order-list-container {
+    background-color: #e3faf0;
+    position: relative;
+    padding: 4px 16px 2px 16px;
+  }
+}
+.addItem {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: gold;
+}
+.longBar {
+    position: fixed;
+    top: -8rem;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    background: white;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    transition: all .6s ease;
+    border-radius: 0px 0px 5px 5px;
+}
+#editor_customer_name {
+    cursor: pointer;
+}
+.tail-datetime-calendar {
+    z-index: 10;
+}
+.flex_container {
+    display: flex;
+    justify-content: center;
+    div, input {
+        width: 100%;
+    }
+}
+.nowrap {
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+#hideLongBar {
+    width: 100%;
+    height: 1rem;
+    background: rgba(0, 0, 0, 0.34);
+    text-align: center;
+    position: absolute;
+    top:0;
+    left:0;;
+}
