@@ -137,7 +137,7 @@ function saveAppointment() {
         cart.items = JSON.stringify(cart.items);
         cart.cust = JSON.stringify(cart.cust);
         cart.status = 1;
-        requestInfo("./api.php", cart).then(function(res) {
+        apiCall(cart).then(function(res) {
             console.log(res);
         })
     }
