@@ -2,6 +2,7 @@ $slot_height: 1.75rem;
 $gray: #413f4f;
 $notwhite: #eee;
 $gold: #c9a200;
+$sidebar_width: 5rem;
 * {
   box-sizing: border-box;
 }
@@ -15,9 +16,13 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 90px;
   background: #CCC;
   margin:0;
   padding:0 2rem;
+  h1 {
+    margin: 0;
+  }
 }
 h4 {
   margin: .25rem;
@@ -44,6 +49,17 @@ h4 {
   display: flex;
   flex-flow: row;
   flex-wrap: nowrap;
+  width: calc(100% - 90px);
+  float:right;
+}
+.sidebar {
+  box-sizing: content-box;
+  position: fixed;
+  top:90px;
+  left:0;
+  width: 5rem;
+  height: calc(100% - 5rem);
+  background: green;
 }
 .row {
   background: $notwhite;
@@ -315,4 +331,10 @@ h4 {
     position: absolute;
     top:0;
     left:0;;
+}
+.flex-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
 }

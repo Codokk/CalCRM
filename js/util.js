@@ -1,3 +1,15 @@
+document.getScroll = function() {
+    if (window.pageYOffset != undefined) {
+        return [pageXOffset, pageYOffset];
+    } else {
+        var sx, sy, d = document,
+            r = d.documentElement,
+            b = d.body;
+        sx = r.scrollLeft || b.scrollLeft || 0;
+        sy = r.scrollTop || b.scrollTop || 0;
+        return [sx, sy];
+    }
+}
 function createBadge(text, color = 'green', icon = 'warn', duration = '5000')
 {
     let bid = "bid"+ new Date().getTime();
@@ -37,4 +49,9 @@ function sortByObjName(obj) {
 }
 function zeroTime(iso) {
     return iso.split("T")[0] + "T00:00:00.00Z";
+}
+function fixSidebar() {
+    let top = (document.getScroll()[1]> 90 ? 90 : document.getScroll()[1]);
+    document.getElementById("sidebar").style.top = 90-top+"px";
+    document.getElementById("sidebar").style.padding = "0px 0px "+top+"px 0px";
 }

@@ -13,7 +13,7 @@
     <title>Calendar Project</title>
 </head>
 
-<body>
+<body onscroll="fixSidebar()">
     <header>
         <div id="title_box" class='flex-col'>
             <h1>Calendar V1.2</h1>
@@ -30,6 +30,17 @@
             <div class="box_button" title="Logout" onClick="requestInfo('/api.php',{fn:'logout'}).then(function(){createBadge('Goodbye!');setTimeout(function(){window.location.reload()},1000)})"><i class="fas fa-power-off"></i></div>
         </div>
     </header>
+    <aside id="sidebar" class="sidebar flex-col">
+        <div class="box_button">
+            <i class="fa fa-calendar"></i>
+        </div>
+        <div class="box_button">
+            <i class="fa fa-list"></i>
+        </div>
+        <div class="box_button">
+            <i class="fa fa-plus"></i>
+        </div>
+    </aside>
     <div class="weekly-calendar">
         <div id="Side-Guide" class="row" style='width: 7rem;border:none;'>
             <div class="row-top">
