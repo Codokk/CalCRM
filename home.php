@@ -17,11 +17,6 @@
     <header>
         <div id="title_box" class='flex-col'>
             <h1>Calendar V1.2</h1>
-            <div class="flex_container">
-            <i class="fa fa-arrow-left" onClick="moveBackDays();"></i>
-            <span id="cal_date_range">tody</span>
-            <i class="fa fa-arrow-right" onClick="moveForwardDays();"></i>
-            </div>
         </div>
         <div class="box-container">
             <div class="box_button" title="Customers" onClick="createCustomer_alpha()"><i class="fas fa-users"></i></div>
@@ -41,6 +36,36 @@
             <i class="fa fa-plus"></i>
         </div>
     </aside>
+    <div id="calendar_headbar">
+        <div id="cal_appt_date">
+            <div><h3>Appointment Date</h3></div>
+            <div>
+                <i class="fa fa-arrow-left" onClick="moveBackDays();"></i>
+                <span id="cal_date_range">tody</span>
+                <i class="fa fa-arrow-right" onClick="moveForwardDays();"></i>
+            </div>
+        </div>
+        <div id="cal_days_to_show">
+            <h3>Days To Show</h3>
+            <div><select id="cal_days_to_show_select" onchange="changeDaysToShow(value)">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select></div>
+        </div>
+        <div id="employees_to_show">
+            <h3>Employees To Show</h3>
+            <div>
+                <select name="" id="">
+                    <option value="Cody">Cody</option>
+                </select>
+            </div>
+        </div>
+    </div>
     <div class="weekly-calendar">
         <div id="Side-Guide" class="row" style='width: 7rem;border:none;'>
             <div class="row-top">
@@ -238,6 +263,7 @@
                     timeFormat: false,
                     zeroSeconds: true
                 });
+                document.getElementById("cal_days_to_show_select").value = days_to_show;
             })
         </script>
     </footer>

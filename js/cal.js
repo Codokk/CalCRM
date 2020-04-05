@@ -68,7 +68,7 @@ function minToTime(mins, isMilitary = false) {
 }
 //Calendar Functionality Functions
 function applyOptions() {
-    changeDaysToShow(document.getElementById('dts_input').value);
+    changeDaysToShow(document.getElementById('dts_input').value, false);
     start_date = new Date(document.getElementById('opt_start_date').value);
     changeInterval(document.getElementById('interval_input'));
     refreshData();
@@ -139,8 +139,13 @@ function create_appt(time, day_index) {
     appts.push(appt);
     calendarRefresh();
 }
-function changeDaysToShow(days) {
+function changeDaysToShow(days, refresh = true) {
+    console.log(days);
     days_to_show = days;
+    if(refresh)
+    {
+        refreshData();
+    }
 }
 function changeInterval(el) {
     let opt;

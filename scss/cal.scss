@@ -338,3 +338,31 @@ h4 {
   align-items: center;
   flex-flow: column;
 }
+#calendar_headbar {
+  margin-left: 7rem;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+  width: calc(100% - 9rem);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border: 1px solid #b4b4b4;
+
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    margin: .5rem 1rem;
+    padding: 1rem 2rem;
+    border-left: 1px solid $gray;
+
+    &:first-child {
+      border-left: none;
+    }
+  
+    h3 {
+      margin: 0;
+    }
+  }
+}
