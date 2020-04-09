@@ -1,3 +1,19 @@
+// Calendar Global Vars
+let G_today = new Date().toISOString;
+let G_appts = [];
+let G_custs = [];
+let G_prods = [];
+let G_servs = [];
+let G_empls = [];
+
+let cart = {};
+// Calendar Global Object Vars
+let O_appts = {};
+let O_custs = {};
+let O_prods = {};
+let O_servs = {};
+let O_empls = {};
+
 //Custom Date Function For Better Syntax
 Date.prototype.addDays = function (days) {
     let date = new Date(this.valueOf());
@@ -118,7 +134,6 @@ function openApptCreator(ticket_id = null) {
     document.getElementById("editor_appt_hr").value = time[0];
     document.getElementById("editor_appt_min").value = time[1];
     document.getElementById("editor_appt_tod").value = time[2];
-    buildItems();
     refreshCart();
     document.getElementById("create_appt_popup").classList.remove("hidden");
     document.getElementById("overlay").classList.remove("hidden");
@@ -136,7 +151,7 @@ function create_appt(time, day_index) {
     appt.services = [
         0
     ];
-    appts.push(appt);
+    G_appts.push(appt);
     calendarRefresh();
 }
 function changeDaysToShow(days, refresh = true) {
@@ -225,12 +240,12 @@ function calendarRefresh() {
   `;
         document.getElementsByClassName("timeslots")[i].innerHTML = day_html[i];
     }
-    console.warn(appts);
-    for (let i = 0; i < appts.length; i++) {
-        let app = appts[i];
+    console.warn(G_appts);
+    for (let i = 0; i < G_appts.length; i++) {
+        let app = G_appts[i];
         console.log("ADDING APPT");
         console.log(app);
-        console.log(app);
+        console.log(O_custs);
         //let t = time of appt
         let d = app.date.split("T")[0];
         let t = app.date.split("T")[1];
@@ -244,7 +259,7 @@ function calendarRefresh() {
         console.log("Slots:" + min);
         let top = min * slot_height + "rem";
         let h = (app.duration / increment) * slot_height + "rem";
-        document.getElementsByClassName("date" + d)[0].innerHTML += "<div class='appointment' data-apptid='"+app.id+"' id='apptindex-" + i + "' draggable='true' ondragstart='return dragStart(event)' style='top: " + top + ";height:" + h + "'><div class='content'><strong>" + customer_obj["cid" + app.cid].fname + "&nbsp;" + customer_obj["cid" + app.cid].lname + "</strong><br/><p>" + app.items[0].name + "</p></div></div>"
+        document.getElementsByClassName("date" + d)[0].innerHTML += "<div class='appointment' data-apptid='"+app.id+"' id='apptId-" + G_appts[i].id + "' draggable='true' onClick='openThisAppointment("+G_appts[i].id+")' ondragstart='return dragStart(event)' style='top: " + top + ";height:" + h + "'><div class='content'><strong>" + O_custs[app.cid].fname + "&nbsp;" + O_custs[app.cid].lname + "</strong><br/><p>" + app.items[0].name + "</p></div></div>"
     }
 }
 function slotselect(time, day_index) {
@@ -263,9 +278,9 @@ function slotselect(time, day_index) {
 }
 function populateServiceDataList() {
     let html = "";
-    for(let i = 0; i < services.length; i++)
+    for(let i = 0; i < G_servs.length; i++)
     {
-        html += "<option value='"+services[i].name+"'></option>"
+        html += "<option value='"+G_servs[i].name+"'></option>"
     }
     return html;
 }

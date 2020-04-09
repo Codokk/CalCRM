@@ -4,17 +4,6 @@ function removeItem(i) {
         refreshCart();
     }
 }
-function buildItems() {
-    for (let i = 0; i < services.length; i++) {
-        items.push(services[i]);
-    }
-    for (let i = 0; i < products.length; i++)
-    {
-        items.push(products[i]);
-    }
-    //Add Packages here when added    
-    items = sortByObjName(items);
-}
 function sanitizeLongbar() {
     document.getElementById("longbar_input").remove();
     document.getElementById("longbar").innerHTML += "<input type='text' id='longbar_input' />";
@@ -66,11 +55,11 @@ function pickACustomer() {
             e.target.setAttribute("disabled", "true");
             createBadge("Finding Customer...");
             let cust = false;
-            for (let i = 0; i < customers.length; i++) {
+            for (let i = 0; i < G_custs.length; i++) {
                 let spl = e.target.value.split(" ");
                 if (spl.length > 1) {
-                    if (customers[i].fname.toLowerCase() == e.target.value.split(" ")[0].toLowerCase() && customers[i].lname.toLowerCase() == e.target.value.split(" ")[1].toLowerCase()) {
-                        cust = customers[i];
+                    if (G_custs[i].fname.toLowerCase() == e.target.value.split(" ")[0].toLowerCase() && G_custs[i].lname.toLowerCase() == e.target.value.split(" ")[1].toLowerCase()) {
+                        cust = G_custs[i];
                         createBadge("Customer Found");
                         break;
                     }
@@ -102,6 +91,8 @@ function refreshCart() {
     while (del[0]) {del[0].parentNode.removeChild(del[0]);}
     let html = "";
     for (let i = 0; i < cart.items.length; i++) {
+        console.log(cart.items);
+        console.log(cart.items[i]);
         let item = cart.items[i];
         duration += item.duration;
         console.log(item);

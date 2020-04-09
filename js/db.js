@@ -62,23 +62,26 @@ function apiCall(data, method = "POST", async = true) {
     });
 }
 function refreshData() {
+    //Get all data via Promise
     createBadge("Refreshing Your Data");
     Promise.all([
         apiCall({ ssid: ssid, fn: 'getAppts', startdate: zeroTime(new Date(start_date).toISOString()), enddate: zeroTime(new Date(start_date).addDays(days_to_show).toISOString()) }),
         apiCall({ ssid: ssid, fn: 'getCusts' }),
         apiCall({ ssid: ssid, fn: 'getServs' })
     ]).then(function (ret) {
-        console.log(ret);
         try {
-            appts = JSON.parse(ret[0]);
-            customers = JSON.parse(ret[1]);
-            services = JSON.parse(ret[2]);
+            G_appts = JSON.parse(ret[0]);
+            G_custs = JSON.parse(ret[1]);
+            G_servs = JSON.parse(ret[2]);
         } catch {
             console.error("Refreshing Data Failed");
         }
-        Promise.all([customer_object_creator(customers), service_object_creator(services)]).then(function (res) {
+        Promise.all([mapById(G_appts, true),mapById(G_custs), mapById(G_servs)]).then(function (res) {
+            O_appts = res[0];
+            O_custs = res[1];
+            O_servs = res[2];
             console.log("Objects Created");
-            console.log(appts);
+            console.log(O_appts);
             createBadge("Data loaded, refreshing Calendar")
             calendarRefresh();
         })
@@ -87,26 +90,6 @@ function refreshData() {
         alert("There was an error refreshing your information");
     });
 }
-function customer_object_creator(cust) {
-    return new Promise(function (resolve, reject) {
-        let cust_obj = {};
-        for (let i = 0; i < cust.length; i++) {
-            cust_obj["cid" + cust[i].id] = cust[i];
-        }
-        customer_obj = cust_obj;
-        resolve();
-    })
-}
-function service_object_creator(serv) {
-    return new Promise(function (resolve, reject) {
-        let serv_obj = {};
-        for (let i = 0; i < serv.length; i++) {
-            serv_obj["servid" + serv[i].id] = serv[i];
-        }
-        service_obj = serv_obj;
-        resolve();
-    })
-}
 function updateAppt(obj) {
     let app;
     if (!obj.id && !obj.index) {
@@ -114,11 +97,11 @@ function updateAppt(obj) {
         return;
     } else {
         if (obj.index) {
-            app = appts[obj.index];
+            app = G_appts[obj.index];
         } else if (obj.id) {
-            for (let i = 0; i < appts.length; i++) {
-                if (appts.id == obj.id) {
-                    app = appts[i];
+            for (let i = 0; i < G_appts.length; i++) {
+                if (G_appts.id == obj.id) {
+                    app = G_appts[i];
                     break;
                 }
             }
@@ -164,4 +147,16 @@ function createService_alpha() {
         console.log(res);
         alert("Created");
     });
+}
+function mapById(arr, appt=false) {
+    let o = {};
+    for(let i=0; i<arr.length; i++)
+    {
+        if(appt)
+        {
+            arr[i].items = JSON.parse(arr[i].items);
+        }
+        o[arr[i].id] = arr[i];
+    }
+    return o;
 }
