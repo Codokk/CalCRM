@@ -119,6 +119,10 @@ h4 {
   align-items: center;
   background-color: green;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+  
+  &.selected {
+    background-color: blue;
+  }
 }
 .overlay {
     position: fixed;

@@ -237,7 +237,6 @@
             let item_storage_container = ""; //Used to detect if user clicks on datalist option for products & services
             let items = []; //Used for storing products services and packages on ticket creations.
             let products = [];
-            let cart = {}; //Used for ticket storage;
             document.addEventListener("DOMContentLoaded", function(){
                 refreshData();
                 //Set event listeners
@@ -264,6 +263,8 @@
                     zeroSeconds: true
                 });
                 document.getElementById("cal_days_to_show_select").value = days_to_show;
+                console.log("APPTS");
+                console.log(G_appts);
             })
         </script>
     </footer>

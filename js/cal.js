@@ -106,7 +106,10 @@ function openApptCreator(ticket_id = null) {
     }
     //Apply Current Settings
     if(ticket_id) {
-
+        cart = O_appts[ticket_id];
+        //Assume if the ticket was already saved, it is a valid ticket
+        cart.valid = {client: true, items: true};
+        console.warn(cart);
     } else {
         cart = {
             id: null,
@@ -284,3 +287,12 @@ function populateServiceDataList() {
     }
     return html;
 }
+function openThisAppointment(app_id) {
+    if(!document.getElementById("apptId-"+app_id).classList.contains("selected"))
+    {
+        document.getElementById("apptId-"+app_id).classList.add("selected");
+    } else {
+        document.getElementById("apptId-"+app_id).classList.remove("selected");
+        openApptCreator(app_id);
+    }
+} 
