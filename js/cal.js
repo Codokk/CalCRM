@@ -100,7 +100,7 @@ function openConfiguration() {
     document.getElementById("config_popup").classList.remove("hidden");
     document.getElementById("overlay").classList.remove("hidden");
 }
-function openApptCreator(ticket_id = null) {
+function openApptCreator(ticket_id = null, date = null) {
     for (let i = 0; i < document.getElementsByClassName('overlay_container').length; i++) {
         document.getElementsByClassName('overlay_container')[i].classList.add('hidden');
     }
@@ -113,7 +113,7 @@ function openApptCreator(ticket_id = null) {
     } else {
         cart = {
             id: null,
-            date: new Date().toISOString(),
+            date: date?date:new Date().toISOString(),
             duration: 0,
             cid: null,
             eid: 1,
@@ -269,7 +269,7 @@ function slotselect(time, day_index) {
     console.log("i" + day_index + "t" + time);
     let el = document.getElementById("i" + day_index + "t" + time);
     if (el.classList.contains('selected')) {
-        create_appt(time, day_index);
+        openApptCreator(null, el.getAttribute("data-timeiso"));
     } else {
         try {
             document.querySelector(".selected").classList.remove('selected');
