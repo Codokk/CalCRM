@@ -86,7 +86,7 @@ h4 {
   border-bottom: 1px dashed $gray;
   height: $slot_height;
   user-select: none;
-  &.active {
+  &.selected {
     background-color: blue;
     z-index: 3;
     &:hover {

@@ -122,12 +122,12 @@ h4 {
           user-select: none;
 }
 
-.slot.active {
+.slot.selected {
   background-color: blue;
   z-index: 3;
 }
 
-.slot.active:hover {
+.slot.selected:hover {
   background-color: #0000e6;
 }
 

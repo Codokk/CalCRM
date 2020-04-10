@@ -268,15 +268,15 @@ function calendarRefresh() {
 function slotselect(time, day_index) {
     console.log("i" + day_index + "t" + time);
     let el = document.getElementById("i" + day_index + "t" + time);
-    if (el.classList.contains('active')) {
+    if (el.classList.contains('selected')) {
         create_appt(time, day_index);
     } else {
         try {
-            document.querySelector(".slot.active").classList.remove('active');
+            document.querySelector(".selected").classList.remove('selected');
         } catch {
             console.warn("No active slots found");
         }
-        el.classList.add('active');
+        el.classList.add('selected');
     }
 }
 function populateServiceDataList() {
@@ -290,6 +290,10 @@ function populateServiceDataList() {
 function openThisAppointment(app_id) {
     if(!document.getElementById("apptId-"+app_id).classList.contains("selected"))
     {
+        for(let i=0; i<document.getElementsByClassName("selected").length; i++)
+        {
+            document.getElementsByClassName("selected")[i].classList.remove("selected");
+        }
         document.getElementById("apptId-"+app_id).classList.add("selected");
     } else {
         document.getElementById("apptId-"+app_id).classList.remove("selected");
